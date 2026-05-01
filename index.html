@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dora María González — Half Screens, Half Human Presence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f1e8;
+    --paper-warm: #efe5d2;
+    --ink: #1f2421;
+    --ink-soft: #3d4239;
+    --accent: #a8443a;        /* terracotta */
+    --accent-soft: #c97361;
+    --gold: #c8954b;
+    --teal: #3a6b6b;
+    --rule: #d9cdb5;
+    --highlight: #f3e3c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    font-size: 17px;
+    overflow-x: hidden;
+  }
+
+  /* paper grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    background-image:
+      radial-gradient(circle at 25% 35%, rgba(168, 68, 58, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(58, 107, 107, 0.04) 0%, transparent 50%);
+  }
+
+  /* === NAV === */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(247, 241, 232, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-logo em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.2s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+    height: 1px;
+    background: var(--accent);
+    transition: right 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { right: 0; }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    padding: 130px 36px 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero h1 .ampersand {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    max-width: 520px;
+    line-height: 1.55;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+    max-width: 520px;
+  }
+
+  .hero-meta strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 15px;
+    margin-top: 3px;
+  }
+
+  .hero-image {
+    position: relative;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 25px 60px -20px rgba(31, 36, 33, 0.35),
+                0 8px 20px -10px rgba(31, 36, 33, 0.2);
+    transform: rotate(1.5deg);
+    transition: transform 0.4s ease;
+  }
+
+  .hero-image:hover img { transform: rotate(0deg); }
+
+  .hero-image::before {
+    content: 'What a time to be alive.';
+    position: absolute;
+    top: -28px;
+    left: -20px;
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--teal);
+    transform: rotate(-3deg);
+    z-index: 2;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 100px 36px;
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-intro {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 700px;
+    margin-bottom: 60px;
+    line-height: 1.6;
+  }
+
+  /* === PROFILE === */
+  .profile-section {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 70px;
+    align-items: start;
+  }
+
+  .profile-image-wrap {
+    position: relative;
+  }
+
+  .profile-image-wrap img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px -15px rgba(31, 36, 33, 0.3);
+  }
+
+  .profile-tag {
+    position: absolute;
+    bottom: -18px;
+    right: -14px;
+    background: var(--paper);
+    padding: 10px 18px;
+    border: 1px solid var(--rule);
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--accent);
+    transform: rotate(2deg);
+    box-shadow: 0 6px 16px rgba(31, 36, 33, 0.1);
+  }
+
+  .profile-text p {
+    margin-bottom: 18px;
+    font-size: 17px;
+    color: var(--ink-soft);
+  }
+
+  .profile-text p:first-child::first-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    font-weight: 400;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 10px 0 -2px;
+    color: var(--accent);
+  }
+
+  .roles-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .role-card {
+    background: var(--paper);
+    padding: 20px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .role-card .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .role-card .role {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* === PHILOSOPHY === */
+  .philosophy-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 120px 36px;
+  }
+
+  .philosophy-section .section-label {
+    color: var(--gold);
+  }
+
+  .philosophy-section .section-label::before {
+    background: var(--gold);
+  }
+
+  .philosophy-section .section-title {
+    color: var(--paper);
+  }
+
+  .philosophy-section .section-title em {
+    color: var(--accent-soft);
+  }
+
+  .quote-block {
+    margin: 60px 0;
+    padding: 0 0 0 50px;
+    border-left: 2px solid var(--accent-soft);
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '"';
+    position: absolute;
+    left: 8px;
+    top: -20px;
+    font-family: 'Fraunces', serif;
+    font-size: 100px;
+    color: var(--accent-soft);
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .quote-block .quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 1.4;
+    color: var(--paper);
+    margin-bottom: 16px;
+  }
+
+  .quote-block .attribution {
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .philosophy-pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 80px;
+  }
+
+  .pillar h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 14px;
+    color: var(--gold);
+    letter-spacing: -0.01em;
+  }
+
+  .pillar p {
+    color: rgba(247, 241, 232, 0.75);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .pillar p em {
+    font-style: italic;
+    color: var(--accent-soft);
+  }
+
+  /* === THEME (LANGUAGE LEARNING + UDL + AI) === */
+  .theme-section {
+    padding: 120px 36px;
+  }
+
+  .theme-card {
+    background: var(--paper-warm);
+    border-radius: 6px;
+    padding: 50px 50px 50px 50px;
+    margin-bottom: 32px;
+    border-left: 3px solid var(--accent);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .theme-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 14px 30px -15px rgba(31, 36, 33, 0.2);
+  }
+
+  .theme-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .theme-card-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--paper);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  .theme-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .theme-card-tag { order: 2; align-self: flex-start; }
+
+  .theme-card-meta {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .theme-card-body p {
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .theme-card-readings {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .theme-card-readings .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .theme-card-readings ul {
+    list-style: none;
+  }
+
+  .theme-card-readings li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 6px 0;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .theme-card-readings li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .theme-card-readings li strong {
+    font-weight: 600;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  /* === WORKSHOP (CROWN JEWEL) === */
+  .workshop-section {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 50%, var(--paper) 100%);
+    padding: 130px 36px;
+    position: relative;
+  }
+
+  .crown-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--paper);
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  .crown-banner::before {
+    content: '★';
+    font-size: 13px;
+  }
+
+  .workshop-hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+    background: var(--paper);
+    padding: 50px;
+    border-radius: 6px;
+    box-shadow: 0 30px 60px -25px rgba(31, 36, 33, 0.25);
+  }
+
+  .workshop-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 28px;
+  }
+
+  .workshop-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .workshop-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 30px 0;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .stat .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .stat .value {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  .workshop-hero-img img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 12px 28px -10px rgba(31, 36, 33, 0.3);
+  }
+
+  /* workshop story sections */
+  .workshop-story {
+    max-width: 800px;
+    margin: 0 auto 60px;
+  }
+
+  .workshop-story h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--accent);
+    margin: 50px 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .workshop-story p {
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    font-size: 17px;
+  }
+
+  .workshop-story blockquote {
+    margin: 30px 0;
+    padding: 24px 28px;
+    background: var(--highlight);
+    border-left: 3px solid var(--gold);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-radius: 2px;
+  }
+
+  .workshop-story blockquote .source {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    color: var(--ink-soft);
+  }
+
+  /* mentors grid */
+  .mentors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 30px 0 50px;
+  }
+
+  .mentor-card {
+    background: var(--paper);
+    padding: 22px 18px;
+    border-top: 2px solid var(--accent);
+    border-radius: 2px;
+  }
+
+  .mentor-card .name {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .mentor-card .role {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .mentor-card .quote {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* slide gallery */
+  .slides-section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+    margin: 30px 0 8px;
+    color: var(--accent);
+  }
+
+  .slides-section-subtitle {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .slides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .slide-thumb {
+    background: var(--paper);
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px -4px rgba(31, 36, 33, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .slide-thumb:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(31, 36, 33, 0.25);
+  }
+
+  .slide-thumb img {
+    width: 100%;
+    display: block;
+    border-radius: 2px;
+  }
+
+  .slide-thumb .num {
+    font-size: 11px;
+    color: var(--ink-soft);
+    padding: 8px 4px 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 36, 33, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 40px;
+    cursor: pointer;
+  }
+
+  .lightbox.active { display: flex; }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: var(--paper);
+    font-size: 36px;
+    cursor: pointer;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* === REFLECTIONS === */
+  .reflections-section {
+    background: var(--paper-warm);
+  }
+
+  .reflection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+    margin-top: 40px;
+  }
+
+  .reflection-card {
+    background: var(--paper);
+    padding: 36px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reflection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: var(--accent);
+    opacity: 0.08;
+    transform: rotate(45deg) translate(-30px, -30px);
+  }
+
+  .reflection-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .reflection-card .ref-meta {
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .reflection-card p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .reflection-card .pull {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+    line-height: 1.4;
+    margin: 18px 0;
+    padding-left: 16px;
+    border-left: 2px solid var(--gold);
+  }
+
+  /* === FORWARD === */
+  .forward-section {
+    padding: 120px 36px;
+  }
+
+  .forward-list {
+    margin-top: 40px;
+    counter-reset: forward;
+  }
+
+  .forward-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 30px;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    counter-increment: forward;
+  }
+
+  .forward-item:last-child { border-bottom: 1px solid var(--rule); }
+
+  .forward-item::before {
+    content: counter(forward, decimal-leading-zero);
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .forward-item h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 8px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .forward-item p {
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  /* === REFERENCES === */
+  .references-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 120px 36px;
+  }
+
+  .references-section .section-label {
+    color: var(--gold);
+  }
+
+  .references-section .section-label::before { background: var(--gold); }
+
+  .references-section .section-title { color: var(--paper); }
+
+  .references-section .section-title em { color: var(--accent-soft); }
+
+  .ref-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .ref-tab {
+    background: transparent;
+    border: 1px solid rgba(247, 241, 232, 0.2);
+    color: var(--paper);
+    padding: 10px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 100px;
+  }
+
+  .ref-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .ref-tab:hover:not(.active) {
+    border-color: var(--accent-soft);
+    color: var(--accent-soft);
+  }
+
+  .ref-list { display: none; }
+  .ref-list.active { display: block; }
+
+  .ref-list li {
+    list-style: none;
+    padding: 16px 0 16px 26px;
+    border-bottom: 1px solid rgba(247, 241, 232, 0.08);
+    font-size: 14px;
+    color: rgba(247, 241, 232, 0.8);
+    line-height: 1.55;
+    position: relative;
+  }
+
+  .ref-list li::before {
+    content: '§';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-family: 'Fraunces', serif;
+  }
+
+  .ref-list em {
+    color: var(--paper);
+    font-style: italic;
+  }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--paper-warm);
+    padding: 60px 36px 40px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+  }
+
+  footer .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 38px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  footer p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  footer .colophon {
+    margin-top: 28px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .hero-grid, .profile-grid, .workshop-hero { grid-template-columns: 1fr; gap: 40px; }
+    .roles-grid, .philosophy-pillars, .reflection-grid, .mentors-grid {
+      grid-template-columns: 1fr;
+    }
+    .nav-inner { padding: 14px 20px; flex-wrap: wrap; }
+    .nav-links { gap: 14px; font-size: 12px; }
+    .nav-links a { font-size: 12px; }
+    section { padding: 70px 22px; }
+    .hero { padding: 110px 22px 60px; }
+    .workshop-hero { padding: 30px; }
+    .quote-block { padding-left: 30px; }
+    .quote-block .quote { font-size: 20px; }
+    .forward-item { grid-template-columns: 40px 1fr; gap: 16px; }
+    .forward-item::before { font-size: 24px; }
+  }
+
+  /* fade-in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= NAV ============= -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">Dora <em>Gonzalez</em></a>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#theme">Language &amp; Tech</a>
+      <a href="#workshop">Workshop</a>
+      <a href="#reflections">Reflections</a>
+      <a href="#forward">Forward</a>
+      <a href="#references">References</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============= HERO ============= -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">An e-portfolio · EDUC 5990 · TRU 2026</div>
+      <h1>Half screens, <em>half human</em> <span class="ampersand">&amp;</span> presence.</h1>
+      <p class="hero-tagline">A graduate journey through technology-rich pedagogy — woven with language learning, UDL, conscious AI use, and a Mexican psychologist's slow becoming as a teacher in Canada.</p>
+      <div class="hero-meta">
+        <div>By <strong>Dora María González</strong></div>
+        <div>Course <strong>Navigating Technology-Rich Learning Environments</strong></div>
+        <div>Faculty <strong>Dr. Frederic Fovet · TRU</strong></div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/photos/scrapbook.png" alt="Scrapbook of teaching moments — Dora during the pandemic, the Language Learning Centre, students' iPads and artwork">
+    </div>
+  </div>
+</section>
+
+<!-- ============= PROFILE ============= -->
+<section class="profile-section" id="profile">
+  <div class="section-inner">
+    <div class="section-label">Profile</div>
+    <h2 class="section-title">A psychologist, then a teacher, then a learner — <em>often all three at once</em>.</h2>
+    <div class="profile-grid">
+      <div class="profile-image-wrap">
+        <img src="assets/photos/dora-classroom.png" alt="Dora in her pandemic-era classroom, surrounded by children's artwork">
+        <div class="profile-tag">my teachers ♡</div>
+      </div>
+      <div class="profile-text">
+        <p>I trained as a clinical psychologist in Mexico, working mostly with younger children and neurodivergent patients. The pandemic landed me in a strange new role: supervising children attending school online from home on iPads. A job created out of necessity. I came in with a notebook, a pen, and a laptop — and almost no idea how the technology worked. I learned fast, because the children needed me to.</p>
+        <p>That makeshift classroom — half screens, half human presence — became my first teaching life. We hung posters, held morning circles, learned vocabulary together, and once, when a balloon floated up out of reach, we talked about grief. No app could help with that one.</p>
+        <p>Today I am a Master of Education student at Thompson Rivers University and a Teaching Assistant at the Language Learning Centre. I lead conversation circles for ESL students, and in April 2026 I gave a workshop on the conscious use of AI for language learning — the closest thing this portfolio has to a centerpiece.</p>
+        <p>I'm also currently engaged and living between Kamloops and Mumbai, where my partner's family speaks Hindi and Marathi. For the first time in a long time, I am not the fluent one. That experience reshaped Assignment 3 — and probably the way I'll teach for the rest of my life.</p>
+
+        <div class="roles-grid">
+          <div class="role-card">
+            <div class="label">Education</div>
+            <div class="role">M.Ed. candidate, Thompson Rivers University</div>
+          </div>
+          <div class="role-card">
+            <div class="label">Work</div>
+            <div class="role">Teaching Assistant, TRU Language Learning Centre</div>
+          </div>
+          <div class="role-card">
+            <div class="label">Background</div>
+            <div class="role">Clinical Psychologist (Mexico)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= PHILOSOPHY ============= -->
+<section class="philosophy-section" id="philosophy">
+  <div class="section-inner">
+    <div class="section-label">Educational philosophy</div>
+    <h2 class="section-title">Education is never neutral. Technology <em>even less so</em>.</h2>
+    <p class="section-intro" style="color: rgba(247, 241, 232, 0.8);">My philosophy of education was cracked open the moment I read Paulo Freire. The classroom is not a place where information is poured into students; it is a space where teacher and learner together construct meaning. Technology, used consciously, can deepen that — or destroy it.</p>
+
+    <div class="quote-block">
+      <p class="quote">In our making and remaking of ourselves in the process of making history — as subjects… not of pure adaptation to the world — we should end by having the dream, too, a mover of history. There is no change without dream, as there is no dream without hope.</p>
+      <p class="attribution">— Paulo Freire, Pedagogy of Hope (2021, p. 95)</p>
+    </div>
+
+    <div class="philosophy-pillars">
+      <div class="pillar">
+        <h3>Social constructivism</h3>
+        <p>Learning is <em>socially mediated</em>, scaffolded, and built through interaction. Vygotsky and Freire taught me that knowledge is not transmitted; it is co-constructed in conversation, in trust, in the small moments where a learner risks being wrong out loud. This is why a conversation circle matters more than a worksheet.</p>
+      </div>
+      <div class="pillar">
+        <h3>Voice as power</h3>
+        <p>Freire reminded me that <em>voice is tied to power, identity, and the right to tell one's own story</em>. In language learning, this is everything. A multilingual student is not a less-intelligent student — they are a person whose access to expression is being mediated by the language of instruction.</p>
+      </div>
+      <div class="pillar">
+        <h3>Half screens, half human presence</h3>
+        <p>I keep returning to this phrase from Assignment 1. Technology can be a window when humans are forced apart, an accessibility tool when bodies and languages diverge, a thinking partner when used with care. But it cannot replace the human in the room. <em>It has to be both.</em></p>
+      </div>
+      <div class="pillar">
+        <h3>Conscious, not passive</h3>
+        <p>As a psychologist I care how humans think. As an educator I now carry responsibility for how students learn to relate to technology. AI in particular asks teachers to be <em>intentional, not passive</em> — to model critical use, protect cognitive struggle, and preserve learner voice in a world of frictionless generation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= THE WOVEN THEME ============= -->
+<section class="theme-section" id="theme">
+  <div class="section-inner">
+    <div class="section-label">The thread that ties it all</div>
+    <h2 class="section-title">Language learning, <em>through technology</em>, for variable learners.</h2>
+    <p class="section-intro">Rather than one assignment per tab, I've gathered the work where it actually lives in my practice. The Language Learning Centre is where every concept I encountered in this course meets a real student with a real barrier. UDL, social constructivism, AI as a scaffold, the digital divide, leadership through change — these are not separate units for me. They are the layers of a single practice.</p>
+
+    <!-- A3: UDL -->
+    <div class="theme-card fade-in">
+      <div class="theme-card-header">
+        <h3>When language becomes the barrier: a UDL reflection on access, voice, and technology</h3>
+        <span class="theme-card-tag">Assignment 3 · UDL</span>
+      </div>
+      <div class="theme-card-meta">Individual reflection · Week 8 · April 2026</div>
+      <div class="theme-card-body">
+        <p>Sitting at a dinner table in Mumbai, surrounded by my partner's family speaking Hindi and Marathi, I realized that my <em>thoughts had not become less complex</em> — only my access to expression had narrowed. That gap between what I know and what I can say became the lens for this reflection on multilingual learners at the Language Learning Centre.</p>
+        <p>Using the three UDL principles — multiple means of representation, expression, and engagement — I redesigned a traditional verbal-fluency-graded classroom around accessible digital tools: speech-to-text, captioned media, AI conversation partners, and bilingual scaffolds. Technology, when designed with intent, stops being a substitute for participation and becomes <em>a bridge to it</em>.</p>
+        <blockquote style="margin: 24px 0; padding: 18px 24px; background: var(--paper); border-left: 3px solid var(--gold); font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; color: var(--ink); line-height: 1.5;">For the first time, I am not the fluent participant. I have recognized how often classrooms equate language proficiency with intelligence.</blockquote>
+      </div>
+      <div class="theme-card-readings">
+        <div class="label">Readings woven in</div>
+        <ul>
+          <li><strong>Strangman, Meyer, Hall &amp; Proctor</strong> — Improving Foreign Language Instruction with New Technologies and UDL</li>
+          <li><strong>Rao &amp; Torres</strong> — Supporting Academic and Affective Learning Processes for ELLs with UDL (TESOL Quarterly, 2017)</li>
+          <li><strong>Fiori</strong> — Social Constructivism, UDL, and Instructional Design in the AI-Enhanced Spanish L2 Classroom</li>
+          <li><strong>Yang et al.</strong> — Leveraging Large Language Models to Create Learner Personas</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- A2: Pedagogical innovation -->
+    <div class="theme-card fade-in">
+      <div class="theme-card-header">
+        <h3>Pandemic pedagogy: a case study in technology as window, technology as wall</h3>
+        <span class="theme-card-tag">Assignment 2 · Innovation</span>
+      </div>
+      <div class="theme-card-meta">Case study · Week 5 · 2026</div>
+      <div class="theme-card-body">
+        <p>The pandemic-era role I held — supervising children doing school online from home on iPads — was a pedagogical innovation built out of necessity, not design. Some of it worked beautifully: Zoom let me reach children whose parents could not stay home. Some of it failed: kids fell into Roblox, attention fractured, and the divide between supported and unsupported families widened in real time.</p>
+        <p>The goal of education had not changed; the alignment between outcome, activity, and assessment was scrambled by the medium. The innovation, I argue, was not the iPad. It was the <em>posters on the wall, the morning circles, the vocabulary board, the limit on screen time</em> — the human design layered onto the technology.</p>
+      </div>
+      <div class="theme-card-readings">
+        <div class="label">Readings woven in</div>
+        <ul>
+          <li><strong>An et al. (2021)</strong> — K-12 teachers' feelings, experiences, and perspectives during early pandemic online teaching</li>
+          <li><strong>Prado-Gascó et al. (2020)</strong> — Stay at Home and Teach: Psychosocial Risks Between Spain and Mexico</li>
+          <li><strong>Jiménez Ramírez et al. (2024)</strong> — Estrategias de acompañamiento familiar en la educación preescolar (México)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- A4: Decolonization -->
+    <div class="theme-card fade-in">
+      <div class="theme-card-header">
+        <h3>Voice, technology, and reconciliation: amplifying survivor testimony in Project of Heart</h3>
+        <span class="theme-card-tag">Assignment 4 · Decolonization</span>
+      </div>
+      <div class="theme-card-meta">Team asynchronous presentation · Week 9</div>
+      <div class="theme-card-body">
+        <p>Education is not neutral; it elevates some voices and silences others. Our team analyzed <em>Project of Heart</em> — a Canadian initiative that uses digital archives, video, and survivor testimony to put Indigenous voices at the center of reconciliation work. Drawing on Freire, we framed voice as inseparable from power and identity, and explored how digital archives like USC Shoah Foundation, Witness, and StoryCorps extend marginalized testimony beyond local audiences.</p>
+        <p>The critical edge: technology can amplify, but it can also flatten. A survivor's recorded testimony is not the same as the survivor in a room. Reconciliation requires <em>listening</em>, and listening requires presence. Technology is a help, not a substitute.</p>
+      </div>
+      <div class="theme-card-readings">
+        <div class="label">Readings woven in</div>
+        <ul>
+          <li><strong>Freire</strong> — Pedagogy of the Oppressed; Pedagogy of Hope</li>
+          <li><strong>Critical digital pedagogy for transformative practices in the Global South</strong> (literature review)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- A5: Equity -->
+    <div class="theme-card fade-in">
+      <div class="theme-card-header">
+        <h3>The challenge of disconnection: a critical review on rural schools and digital inequality</h3>
+        <span class="theme-card-tag">Assignment 5 · Equity</span>
+      </div>
+      <div class="theme-card-meta">Critical review · Week 11 · April 10, 2026</div>
+      <div class="theme-card-body">
+        <p>Ahiaku, Uleanya &amp; Muyambi (2025) studied a rural school in KwaZulu-Natal, South Africa, where digital "disconnection" — a mix of geography, infrastructure, and socioeconomic constraint — turns the promise of educational technology into another marker of inequity. My critical review situated their case study against broader literature on the digital divide, examined the methodological strength of their qualitative case approach, and pushed back on the implicit assumption that <em>more technology = more justice</em>.</p>
+        <p>This review re-anchored my own thinking: technology integration cannot be sold as a sustainability story without also being told as an equity story. A tool only serves the learners who can pick it up.</p>
+      </div>
+      <div class="theme-card-readings">
+        <div class="label">Readings woven in</div>
+        <ul>
+          <li><strong>Ahiaku, Uleanya &amp; Muyambi (2025)</strong> — Rural schools and tech use for sustainability</li>
+          <li><strong>Chikungwa-Everson (2024)</strong> — The impact of digitalisation on skills development in South Africa</li>
+          <li><strong>Information society and digital divide in South Africa</strong> — longitudinal surveys</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= WORKSHOP CROWN JEWEL ============= -->
+<section class="workshop-section" id="workshop">
+  <div class="section-inner">
+    <div class="crown-banner">Crown jewel · Real-world integration</div>
+    <h2 class="section-title">AI, but make it <em>conscious</em>.</h2>
+    <p class="section-intro">A 60-minute workshop I designed and delivered to ESL students at the TRU Language Learning Centre on April 13th, 2026. This is where every thread of this course converged: leadership through change (Assignment 6), UDL for variable learners, social constructivism, ethical use of AI, and the conviction that students deserve a real conversation about the tools that are reshaping their learning.</p>
+
+    <!-- Hero card -->
+    <div class="workshop-hero">
+      <div>
+        <h2 class="workshop-title">A quick student guide to <em>using AI without losing yourself</em>.</h2>
+        <div class="workshop-stats">
+          <div class="stat">
+            <div class="label">Date</div>
+            <div class="value">April 13, 2026</div>
+          </div>
+          <div class="stat">
+            <div class="label">Venue</div>
+            <div class="value">TRU Language Learning Centre</div>
+          </div>
+          <div class="stat">
+            <div class="label">Audience</div>
+            <div class="value">ESL students, mixed ages</div>
+          </div>
+          <div class="stat">
+            <div class="label">Format</div>
+            <div class="value">25 slides · Mentimeter · live activities</div>
+          </div>
+        </div>
+        <p style="color: var(--ink-soft); font-size: 16px;">When my supervisor John Turner assigned me an AI workshop alongside the mental health one, I took it precisely because I was the least qualified person in the room. I had arrived at TRU one semester earlier with a notebook and a pen, never having used ChatGPT. If I — a graduate student with full institutional support — had struggled, what were our undergraduates navigating alone?</p>
+      </div>
+      <div class="workshop-hero-img">
+        <img src="assets/workshop/slide-01.png" alt="Title slide of AI, But Make It Conscious workshop">
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="workshop-story">
+      <h3>The starting point: I knew nothing</h3>
+      <p>The first thing I did was tell Dr. Fovet I had been assigned this workshop and ask for help. He gave me thirty minutes on Zoom and connected me by email to four people across TRU who were thinking seriously about AI in education. I spent a semester interviewing them, reading, and figuring out what students were actually doing with these tools.</p>
+
+      <h3>The mentors who shaped this</h3>
+      <p>This workshop would not exist without these conversations. Each one moved me from "I have to give a talk" to "I have something to say."</p>
+
+      <div class="mentors-grid">
+        <div class="mentor-card">
+          <div class="name">Dr. Frederic Fovet</div>
+          <div class="role">Course professor, TRU</div>
+          <div class="quote">"Pointed me to the right people, and gave me the questions worth asking."</div>
+        </div>
+        <div class="mentor-card">
+          <div class="name">Brian Lamb</div>
+          <div class="role">Director, Innovation in Open Learning</div>
+          <div class="quote">"Anyone who tells you they're an AI expert is full of crap. We're all figuring this out together."</div>
+        </div>
+        <div class="mentor-card">
+          <div class="name">Alexis Brown</div>
+          <div class="role">Educational Technology, TRU</div>
+          <div class="quote">"We encourage students to use AI — but specifically Copilot, because of how it handles their data."</div>
+        </div>
+        <div class="mentor-card">
+          <div class="name">Park Piao</div>
+          <div class="role">Writing &amp; Success Centre, TRU</div>
+          <div class="quote">"Everyone has a different opinion. Help students develop their own."</div>
+        </div>
+      </div>
+
+      <h3>The framework I built</h3>
+      <p>From the interviews and the readings (especially Gignac &amp; Szodorai on what intelligence actually is, and Ashok et al. on the ethics of AI in digital technologies), I built a five-part framework I called <strong>Conscious AI Use</strong>: <em>Intentional · Critical · Supportive (not replacing thinking) · Authentic (your voice) · Responsible (you are accountable).</em></p>
+
+      <blockquote>
+        If you prompt it… it's still your work. You are responsible for what you submit, so always: review, edit, understand, cite it.
+        <span class="source">— from the workshop, Slide 9</span>
+      </blockquote>
+
+      <h3>The activity that landed hardest</h3>
+      <p>I asked students to create their own AI persona for language practice — a conversational tutor for the Conversation Circles I run at the LLC. We built prompts together: "Act as a friendly conversation partner. Help me practice English. Ask me questions and correct me gently." Then we improved them. This activity took everything I had been reading about — Lovett's learner personas, Fiori's UDL-anchored AI design, Hockly's caution about chatbots — and put it in students' hands.</p>
+
+      <h3>The moment I will not forget</h3>
+      <p>During the discussion on resistance to new technology, an older student named David — fifty years old, from Guadalajara — spoke up. He told the room of 18-to-20-year-olds that he had lived through the normalization of computers, then the internet. <em>"There has always been pushback when there is a new technology,"</em> he said. <em>"Teachers wouldn't let you use a computer. Then they wouldn't let you use the web. They wanted books, and then typewriters."</em></p>
+      <p>For a workshop on AI delivered to a diverse multilingual audience, that single moment did more than any of my slides. It was the variability of learners that the UDL literature keeps insisting matters — made visible in the room, in real time. I didn't plan it. I just left enough room for it.</p>
+    </div>
+
+    <!-- Slides gallery -->
+    <h3 class="slides-section-title">All 25 slides</h3>
+    <p class="slides-section-subtitle">Click any slide to enlarge</p>
+    <div class="slides-grid">
+      <!-- slides will be filled by JS -->
+    </div>
+
+    <!-- Connection to A6 -->
+    <div class="theme-card" style="margin-top: 50px;">
+      <div class="theme-card-header">
+        <h3>This workshop <em>is</em> Assignment 6: leadership through change.</h3>
+        <span class="theme-card-tag">Assignment 6 · Leadership</span>
+      </div>
+      <div class="theme-card-body">
+        <p>Assignment 6 asked us to model leadership best practices in the management of change for a technology integration in a real educational context. I am submitting this workshop, the interview process, and the LLC partnership <em>as</em> that case. Not as a hypothetical proposal — but as what actually happened when a graduate student was given access, mentorship, and trust to lead a small piece of institutional change at TRU.</p>
+        <p>It taught me that leadership in technology integration is not about having answers. It is about asking questions early, listening to the people already doing the work, and creating space for the diverse community of learners to find their own footing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= REFLECTIONS ============= -->
+<section class="reflections-section" id="reflections">
+  <div class="section-inner">
+    <div class="section-label">Reflections</div>
+    <h2 class="section-title">The thinking <em>behind</em> the assignments.</h2>
+    <p class="section-intro">Two of the assignments in this course were explicitly reflective: Assignment 1 (the initial blog reflection) and Assignment 3 (the personal UDL reflection). I have placed them here, together, because they belong together. They bookend a semester of changes — not just in what I knew, but in who I was as a teacher.</p>
+
+    <div class="reflection-grid">
+      <div class="reflection-card">
+        <div class="ref-meta">Assignment 1 · How it started</div>
+        <h3>What a Time to Be Alive</h3>
+        <p>I met technology when it was just <em>there</em>. Encarta CD-ROMs, the modem screech, the family phone you couldn't tie up too long. Then the pandemic happened and technology became a window into the world.</p>
+        <p>This first reflection was the moment I realized I had been a teacher all along — even when my degree said clinical psychologist. The pandemic classroom I built for those children, half screens and half human presence, was the seed of everything that came after.</p>
+        <div class="pull">"In this new world: half screens, half human presence."</div>
+      </div>
+
+      <div class="reflection-card">
+        <div class="ref-meta">Assignment 3 · How it deepened</div>
+        <h3>When Language Becomes the Barrier</h3>
+        <p>This reflection was written from a dinner table in Mumbai. I had become the multilingual learner I had been teaching — the one who understands more than they can say, whose participation is mediated by tools, gestures, and patience.</p>
+        <p>Assignment 3 was where the course content stopped being abstract. UDL is not a checklist; it is a moral position about whose intelligence we are willing to recognize.</p>
+        <div class="pull">"My current experiences of hesitation, reliance on assistive tools, and limited expression do not indicate diminished understanding, but rather restricted access."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FORWARD ============= -->
+<section class="forward-section" id="forward">
+  <div class="section-inner">
+    <div class="section-label">Carrying this forward</div>
+    <h2 class="section-title">What I'll do <em>differently</em> as a language teacher.</h2>
+    <p class="section-intro">An e-portfolio is not a museum. The point of this course was to change my practice — and it has. Here is what I am taking with me into the conversation circles, the workshop room, and any classroom I am lucky enough to lead next.</p>
+
+    <div class="forward-list">
+      <div class="forward-item">
+        <div>
+          <h4>Design conversation circles around variability, not the average learner</h4>
+          <p>UDL has stopped being a framework I read about. It is the lens I now apply when I plan a Conversation Circle: who is in the room, what does each of them need to express themselves, where does technology lower a barrier, and where does it create a new one?</p>
+        </div>
+      </div>
+      <div class="forward-item">
+        <div>
+          <h4>Teach AI literacy as part of language learning, not as a separate topic</h4>
+          <p>The workshop I gave at the LLC will become a recurring component, not a one-off. I want every Conversation Circle student to leave knowing how to use AI as a thinking partner without surrendering their voice to it.</p>
+        </div>
+      </div>
+      <div class="forward-item">
+        <div>
+          <h4>Centre voice, especially when it is hard to hear</h4>
+          <p>From Freire, from Project of Heart, from David in my workshop, from my own evenings in Mumbai: the most important pedagogical move is leaving room for the learner whose access to expression is restricted, and trusting that what they have to say is worth waiting for.</p>
+        </div>
+      </div>
+      <div class="forward-item">
+        <div>
+          <h4>Refuse the equity-blind story of educational technology</h4>
+          <p>The Ahiaku critical review changed how I will talk about EdTech in any room I am in. Tools do not deliver equity. They expose the gaps in it — and the work happens in those gaps.</p>
+        </div>
+      </div>
+      <div class="forward-item">
+        <div>
+          <h4>Stay a learner, especially about AI</h4>
+          <p>Brian Lamb was right — we are all figuring this out as it goes. My commitment is to keep reading, keep interviewing, keep asking my students what is actually happening in their notebooks and on their screens, and to let that update the next workshop, the next reflection, the next portfolio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= REFERENCES ============= -->
+<section class="references-section" id="references">
+  <div class="section-inner">
+    <div class="section-label">References</div>
+    <h2 class="section-title">Everything that <em>made this thinking possible</em>.</h2>
+    <p class="section-intro" style="color: rgba(247, 241, 232, 0.8);">In APA 7. Course readings and the additional sources I drew on for the workshop and assignments are organized by theme.</p>
+
+    <div class="ref-tabs">
+      <button class="ref-tab active" data-tab="udl">UDL &amp; language learning</button>
+      <button class="ref-tab" data-tab="ai">AI &amp; ethics</button>
+      <button class="ref-tab" data-tab="pandemic">Pandemic pedagogy</button>
+      <button class="ref-tab" data-tab="equity">Global equity &amp; digital divide</button>
+      <button class="ref-tab" data-tab="philosophy">Philosophy</button>
+    </div>
+
+    <ul class="ref-list active" data-tab="udl">
+      <li>Fiori, M. (n.d.). <em>Social constructivism, UDL, and instructional design in the AI-enhanced Spanish L2 classroom.</em></li>
+      <li>Rao, K., &amp; Torres, C. (2017). Supporting academic and affective learning processes for English language learners with Universal Design for Learning. <em>TESOL Quarterly, 51</em>(3), 460–472.</li>
+      <li>Strangman, N., Meyer, A., Hall, T., &amp; Proctor, P. (2005). Improving foreign language instruction with new technologies and Universal Design for Learning. <em>IALLT Journal of Language Learning Technologies, 37</em>(2).</li>
+      <li>Yang et al. (n.d.). <em>Leveraging large language models to create learner personas.</em></li>
+    </ul>
+
+    <ul class="ref-list" data-tab="ai">
+      <li>Ashok, M., Madan, R., Joha, A., &amp; Sivarajah, U. (2022). Ethical framework for Artificial Intelligence and Digital technologies. <em>International Journal of Information Management, 62</em>, 102433. https://doi.org/10.1016/j.ijinfomgt.2021.102433</li>
+      <li>Eden, C. A., Chisom, O. N., &amp; Adeniyi, I. S. (2024). Integrating AI in education: Opportunities, challenges, and ethical considerations. <em>Magna Scientia Advanced Research and Reviews, 10</em>, 6–13.</li>
+      <li>Gignac, G. E., &amp; Szodorai, E. T. (2024). Defining intelligence: Bridging the gap between human and artificial perspectives. <em>Intelligence, 104</em>, 101832. https://doi.org/10.1016/j.intell.2024.101832</li>
+      <li>Hockly, N. (2023). Artificial intelligence in English language teaching: The good, the bad and the ugly. <em>RELC Journal, 54</em>(2), 445–451. https://doi.org/10.1177/00336882231168504</li>
+      <li>Microsoft. (n.d.). How does generative AI work? Retrieved from https://www.microsoft.com/en-us/ai/ai-101/how-does-generative-ai-work</li>
+      <li>Thompson Rivers University. (n.d.). Student AI. https://studentai.trubox.ca/</li>
+      <li>Thompson Rivers University Library. (n.d.). Artificial intelligence libguide. https://libguides.tru.ca/artificialintelligence/home</li>
+    </ul>
+
+    <ul class="ref-list" data-tab="pandemic">
+      <li>An, Y., Kaplan-Rakowski, R., Yang, J., Conan, J., Kinard, W., &amp; Daughrity, L. A. (2021). Examining K-12 teachers' feelings, experiences, and perspectives regarding online teaching during the early stage of the COVID-19 pandemic. <em>Educational Technology Research and Development, 69</em>(5), 2589–2613.</li>
+      <li>Jiménez Ramírez, G. Y., Cortes Flores, A., &amp; De Luna Jiménez, M. (2024). Estrategias de acompañamiento familiar en la educación preescolar durante el contexto mexicano de la pandemia. <em>Actualidades Investigativas en Educación, 24</em>(3), 1–33.</li>
+      <li>Prado-Gascó, V., Gómez-Domínguez, M. T., Soto-Rubio, A., Díaz-Rodríguez, L., &amp; Navarro-Mateu, D. (2020). Stay at home and teach: A comparative study of psychosocial risks between Spain and Mexico during the pandemic. <em>Frontiers in Psychology, 11</em>.</li>
+      <li>Early childhood development in México before and after COVID-19. (n.d.).</li>
+    </ul>
+
+    <ul class="ref-list" data-tab="equity">
+      <li>Ahiaku, P. K. A., Uleanya, C., &amp; Muyambi, G. C. (2025). Rural schools and tech use for sustainability: The challenge of disconnection. <em>Education and Information Technologies, 30</em>, 12557–12571.</li>
+      <li>Chikungwa-Everson, T. (n.d.). The impact of digitalisation on skills development in South Africa: A comparative analysis.</li>
+      <li>Critical digital pedagogy for contemporary transformative practices in the Global South: A literature review. (n.d.).</li>
+      <li>Information society and digital divide in South Africa: Results of longitudinal surveys. (n.d.).</li>
+    </ul>
+
+    <ul class="ref-list" data-tab="philosophy">
+      <li>Freire, P. (2021). <em>Pedagogy of hope: Reliving pedagogy of the oppressed</em> (Reprint ed.). Bloomsbury Academic.</li>
+      <li>Freire, P. (1970). <em>Pedagogy of the oppressed.</em> Continuum.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer>
+  <div class="signature">— Dora</div>
+  <p>Dora María González · T00775346 · Faculty of Education and Social Work, TRU</p>
+  <p>EDUC 5990 — Navigating Technology Rich Learning Environments · Dr. Frederic Fovet</p>
+  <p class="colophon">A live e-portfolio · Spring 2026 · Built with care, in Kamloops &amp; Mumbai</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img src="" alt="Slide enlarged">
+</div>
+
+<script>
+  // Build slide grid
+  const slidesGrid = document.querySelector('.slides-grid');
+  const slideTitles = [
+    'Title', 'Menti opener', 'What is intelligence?', 'List of contents',
+    'Defining intelligence (Gignac)', 'Conscious AI: the questions', 'Five principles', 'Ethical use',
+    'Responsible use', 'Academic integrity', 'Data protection', 'Spot the AI vs human (Freire)',
+    'Debrief', 'How AI works', 'Challenges & limitations', 'Activity: prompt → improve → reflect',
+    'Better prompting', 'Your voice is your value', 'Good vs risky use', 'Activity: create an AI persona',
+    'TRU resources', 'Questions / thoughts', 'References (1)', 'References (2)', 'Thank you'
+  ];
+  for (let i = 1; i <= 25; i++) {
+    const num = String(i).padStart(2, '0');
+    const div = document.createElement('div');
+    div.className = 'slide-thumb';
+    div.innerHTML = `
+      <img src="assets/workshop/slide-${num}.png" alt="Slide ${i}: ${slideTitles[i-1]}" loading="lazy">
+      <div class="num">Slide ${i} · ${slideTitles[i-1]}</div>
+    `;
+    div.addEventListener('click', () => openLightbox(`assets/workshop/slide-${num}.png`));
+    slidesGrid.appendChild(div);
+  }
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  lightbox.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Reference tabs
+  const tabs = document.querySelectorAll('.ref-tab');
+  const lists = document.querySelectorAll('.ref-list');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.remove('active'));
+      lists.forEach(l => l.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.ref-list[data-tab="${target}"]`).classList.add('active');
+    });
+  });
+
+  // Fade-in observer
+  const fadeIns = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeIns.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
