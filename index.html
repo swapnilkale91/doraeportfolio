@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dora María González — E-Portfolio · Navigating Technology-Rich Learning Environments</title>
+<meta name="description" content="A graduate e-portfolio by Dora María González (M.Ed., Thompson Rivers University) for EDUC 5990: Navigating Technology-Rich Learning Environments. Includes a workshop on conscious AI use, reflections on UDL, and coursework on language learning, equity, and educational leadership.">
+<meta name="author" content="Dora María González">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,6 +25,167 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+
+  /* === UDL: skip link === */
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 12px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    z-index: 1000;
+    font-size: 14px;
+  }
+  .skip-link:focus {
+    left: 16px;
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* === UDL: keyboard focus-visible === */
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* === UDL: reduced motion === */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .home-image img, .started-image img, .about-image-wrap img,
+    .about-tag, .home-image::before, .started-image::after {
+      transform: none !important;
+    }
+    .fade-in { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* === UDL: high-contrast mode (toggled via JS) === */
+  body.high-contrast::before {
+    display: none;
+  }
+  body.high-contrast {
+    --paper: #ffffff;
+    --paper-warm: #f4f4f4;
+    --ink: #000000;
+    --ink-soft: #1a1a1a;
+    --accent: #6b1810;
+    --accent-soft: #8a2a20;
+    --gold: #6b4d18;
+    --rule: #555555;
+    --highlight: #fff7d0;
+  }
+  body.high-contrast .philosophy-section,
+  body.high-contrast .references-section {
+    background: #000000;
+    color: #ffffff;
+  }
+  body.high-contrast .philosophy-section .section-title,
+  body.high-contrast .references-section .section-title,
+  body.high-contrast .quote-block .quote {
+    color: #ffffff;
+  }
+  body.high-contrast .pillar p {
+    color: rgba(255, 255, 255, 0.95);
+  }
+  body.high-contrast .ref-list li {
+    color: rgba(255, 255, 255, 0.92);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+  body.high-contrast .ref-tab {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  body.high-contrast .ref-tab.active {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+  }
+  body.high-contrast .pillar h3 {
+    color: var(--gold);
+  }
+  body.high-contrast .references-section .section-intro,
+  body.high-contrast .philosophy-section .section-intro {
+    color: rgba(255, 255, 255, 0.92) !important;
+  }
+  body.high-contrast .home-sub,
+  body.high-contrast .section-intro {
+    color: var(--ink);
+  }
+
+  /* === UDL: large-text mode === */
+  body.large-text { font-size: 19.5px; }
+  body.large-text .section-intro,
+  body.large-text .home-sub { font-size: 21px; }
+  body.large-text .about-text p,
+  body.large-text .started-body p,
+  body.large-text .workshop-story p,
+  body.large-text .home-welcome p { font-size: 19px; }
+
+  /* === UDL: reading controls panel === */
+  .a11y-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+    border-radius: 100px;
+    padding: 8px;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 8px 20px -8px rgba(31, 36, 33, 0.3);
+    transition: transform 0.2s ease;
+  }
+  .a11y-controls .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0 8px 0 12px;
+  }
+  .a11y-controls button {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: background 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .a11y-controls button:hover {
+    background: var(--paper-warm);
+  }
+  .a11y-controls button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  @media (max-width: 600px) {
+    .a11y-controls .label { display: none; }
+    .a11y-controls { padding: 6px; gap: 2px; bottom: 12px; left: 12px; }
+    .a11y-controls button { padding: 6px 10px; font-size: 12px; }
+  }
 
   body {
     background: var(--paper);
@@ -1084,6 +1247,96 @@
 
   .ref-list em { color: var(--paper); font-style: italic; }
 
+  /* LICENSE */
+  .license-section {
+    padding: 80px 36px 60px;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule);
+  }
+  .license-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .license-section .section-label {
+    justify-content: center;
+  }
+  .license-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    margin: 24px 0 28px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .license-badge .cc-marks {
+    display: inline-flex;
+    gap: 6px;
+  }
+  .license-badge .cc-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .license-badge .cc-divider {
+    color: var(--ink-soft);
+    margin: 0 4px;
+  }
+  .license-text {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .license-text h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .license-text p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    line-height: 1.65;
+  }
+  .license-text strong { color: var(--ink); font-weight: 600; }
+  .license-text em { font-style: italic; color: var(--ink); }
+  .license-text a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .license-text a:hover { color: var(--ink); }
+
+  .license-badge .cc-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1.35;
+    text-align: left;
+    padding-left: 4px;
+  }
+
   /* FOOTER */
   footer {
     background: var(--paper-warm);
@@ -1143,12 +1396,322 @@
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── ACCESSIBILITY (UDL) ────────────────────────────── */
+
+  /* Skip link — visible only on focus, for keyboard users */
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 20px;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transform: translateY(-200%);
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* Visible keyboard focus indicators */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Screen-reader-only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Respect users with vestibular sensitivity */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .home-image img,
+    .started-image img,
+    .home-image:hover img,
+    .started-image img {
+      transform: none !important;
+    }
+    .fade-in {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  /* Reading controls panel — floating, lower-left */
+  .a11y-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 90;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 6px 20px -8px rgba(31, 36, 33, 0.25);
+  }
+
+  .a11y-controls button {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 100px;
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+  }
+
+  .a11y-controls button:hover {
+    background: var(--paper-warm);
+    color: var(--ink);
+  }
+
+  .a11y-controls button.active {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .a11y-controls .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0 8px 0 12px;
+  }
+
+  /* Larger text mode */
+  body.large-text { font-size: 19px; }
+  body.large-text .home h1 { font-size: clamp(48px, 6vw, 78px); }
+  body.large-text .section-title { font-size: clamp(38px, 5vw, 58px); }
+  body.large-text .nav-links a { font-size: 15px; }
+  body.large-text .ref-list li,
+  body.large-text .nav-links a,
+  body.large-text .stat .label,
+  body.large-text .role-card .label,
+  body.large-text .theme-card-tag,
+  body.large-text .ref-meta { font-size: 0.9em; }
+
+  /* High-contrast mode — true high contrast for low-vision users */
+  body.high-contrast {
+    --paper: #fffef8;
+    --paper-warm: #fff5dc;
+    --ink: #000000;
+    --ink-soft: #000000;
+    --accent: #6b1810;
+    --accent-soft: #8a2818;
+    --gold: #6b4810;
+    --rule: #000000;
+    --highlight: #fff5dc;
+  }
+  body.high-contrast a,
+  body.high-contrast .nav-links a {
+    color: var(--accent);
+  }
+  body.high-contrast .home-eyebrow,
+  body.high-contrast .section-label,
+  body.high-contrast .home h1 em,
+  body.high-contrast .section-title em,
+  body.high-contrast .theme-card-tag {
+    color: var(--accent);
+  }
+  body.high-contrast .home-image::before,
+  body.high-contrast .started-image::after {
+    color: var(--accent);
+  }
+  body.high-contrast .quote-inline,
+  body.high-contrast .pull,
+  body.high-contrast .reflection-card .pull,
+  body.high-contrast .started-body .pull,
+  body.high-contrast .theme-card-callout {
+    color: #000;
+  }
+  body.high-contrast .philosophy-section,
+  body.high-contrast .references-section {
+    background: #000;
+    color: #fff;
+  }
+  body.high-contrast .philosophy-section .section-title,
+  body.high-contrast .philosophy-section .section-intro,
+  body.high-contrast .philosophy-section .pillar p,
+  body.high-contrast .philosophy-section .quote-block .quote,
+  body.high-contrast .references-section .section-title,
+  body.high-contrast .references-section .section-intro,
+  body.high-contrast .references-section .ref-list li {
+    color: #fff;
+  }
+  body.high-contrast .philosophy-section .pillar h3,
+  body.high-contrast .references-section .section-label,
+  body.high-contrast .ref-list li::before,
+  body.high-contrast .quote-block .attribution {
+    color: #ffd86b;
+  }
+  body.high-contrast .ref-tab {
+    border-color: #fff;
+    color: #fff;
+  }
+  body.high-contrast .ref-tab.active {
+    background: #ffd86b;
+    color: #000;
+    border-color: #ffd86b;
+  }
+  body.high-contrast nav {
+    background: var(--paper);
+    border-bottom: 2px solid #000;
+  }
+  body.high-contrast .role-card,
+  body.high-contrast .theme-card,
+  body.high-contrast .reflection-card,
+  body.high-contrast .mentor-card,
+  body.high-contrast .workshop-hero,
+  body.high-contrast .home-welcome p,
+  body.high-contrast .about-text p,
+  body.high-contrast .started-body p,
+  body.high-contrast .theme-card-body p,
+  body.high-contrast .reflection-card p,
+  body.high-contrast .forward-item p,
+  body.high-contrast .interest p,
+  body.high-contrast .workshop-story p,
+  body.high-contrast .license-text p {
+    color: #000;
+  }
+  body.high-contrast .a11y-controls {
+    border: 2px solid #000;
+  }
+
+  @media (max-width: 600px) {
+    .a11y-controls { bottom: 12px; left: 12px; right: 12px; justify-content: center; }
+    .a11y-controls .label { display: none; }
+  }
+
+  /* ─── LICENSE FOOTER ────────────────────────────────── */
+  .license-section {
+    background: var(--paper);
+    padding: 80px 36px 40px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .license-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .license-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 24px;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    background: var(--paper);
+    min-width: 180px;
+  }
+
+  .license-badge .cc-marks {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .license-badge .cc-mark {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .license-badge .cc-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .license-text h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .license-text p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 1.55;
+  }
+
+  .license-text a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .license-text a:hover { color: var(--ink); }
+
+  @media (max-width: 700px) {
+    .license-inner { grid-template-columns: 1fr; gap: 24px; }
+    .license-badge { width: max-content; margin: 0 auto; }
+  }
 </style>
 </head>
 <body>
 
+<a href="#home" class="skip-link">Skip to main content</a>
+
 <!-- NAV -->
-<nav>
+<nav aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#home" class="nav-logo">Dora <em>González</em> · e-portfolio</a>
     <div class="nav-links">
@@ -1161,9 +1724,12 @@
       <a href="#reflections">Reflections</a>
       <a href="#forward">Forward</a>
       <a href="#references">References</a>
+      <a href="#license">License</a>
     </div>
   </div>
 </nav>
+
+<main>
 
 <!-- HOME -->
 <section class="home-section home" id="home">
@@ -1582,13 +2148,13 @@
     <h2 class="section-title">Everything that <em>made this thinking possible</em>.</h2>
     <p class="section-intro">In APA 7. Course readings and the additional sources I drew on for the workshop and assignments are organized by theme.</p>
 
-    <div class="ref-tabs">
-      <button class="ref-tab active" data-tab="udl">UDL &amp; language learning</button>
-      <button class="ref-tab" data-tab="ai">AI &amp; ethics</button>
-      <button class="ref-tab" data-tab="pandemic">Pandemic pedagogy</button>
-      <button class="ref-tab" data-tab="equity">Global equity &amp; digital divide</button>
-      <button class="ref-tab" data-tab="leadership">Leadership &amp; change</button>
-      <button class="ref-tab" data-tab="philosophy">Philosophy</button>
+    <div class="ref-tabs" role="tablist" aria-label="References by theme">
+      <button class="ref-tab active" data-tab="udl" role="tab" aria-selected="true">UDL &amp; language learning</button>
+      <button class="ref-tab" data-tab="ai" role="tab" aria-selected="false">AI &amp; ethics</button>
+      <button class="ref-tab" data-tab="pandemic" role="tab" aria-selected="false">Pandemic pedagogy</button>
+      <button class="ref-tab" data-tab="equity" role="tab" aria-selected="false">Global equity &amp; digital divide</button>
+      <button class="ref-tab" data-tab="leadership" role="tab" aria-selected="false">Leadership &amp; change</button>
+      <button class="ref-tab" data-tab="philosophy" role="tab" aria-selected="false">Philosophy</button>
     </div>
 
     <ul class="ref-list active" data-tab="udl">
@@ -1634,6 +2200,28 @@
   </div>
 </section>
 
+<!-- ACCESSIBILITY & LICENSING -->
+<section class="license-section" id="license" aria-labelledby="license-heading">
+  <div class="license-inner">
+    <div class="license-badge" role="img" aria-label="Creative Commons license: Attribution, Non-Commercial, Share Alike">
+      <div class="cc-marks" aria-hidden="true">
+        <div class="cc-mark">CC</div>
+        <div class="cc-mark">BY</div>
+        <div class="cc-mark">NC</div>
+        <div class="cc-mark">SA</div>
+      </div>
+      <div class="cc-label">Attribution<br>NonCommercial<br>ShareAlike 4.0</div>
+    </div>
+    <div class="license-text">
+      <h3 id="license-heading">Licensing &amp; accessibility</h3>
+      <p>This e-portfolio by <strong>Dora María González</strong> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)</a>. You are free to share and adapt this work, provided you attribute me, do not use it for commercial purposes, and share any derivative work under the same license.</p>
+      <p>This site has been designed with the principles of <strong>Universal Design for Learning</strong> in mind. It offers multiple means of representation (descriptive alt text on every image, sufficient color contrast, scalable typography), action and expression (a skip-to-content link, full keyboard navigation, visible focus indicators, the lightbox is fully keyboard-operable), and engagement (text-size and high-contrast controls in the lower-left corner, and respect for the <em>prefers-reduced-motion</em> system setting). If anything on this page is hard to access, please let me know — accessibility is not a finished state, it is a practice.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="signature">— Dora</div>
@@ -1643,12 +2231,20 @@
   <p class="colophon">A live e-portfolio · Spring 2026 · Built with care, in Kamloops &amp; Mumbai</p>
 </footer>
 
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" aria-label="Close">×</button>
-  <img src="" alt="Slide enlarged">
+<!-- ACCESSIBILITY CONTROLS -->
+<div class="a11y-controls" role="region" aria-label="Reading controls">
+  <span class="label" aria-hidden="true">Reading</span>
+  <button id="text-size-toggle" aria-pressed="false" title="Increase text size">A+</button>
+  <button id="contrast-toggle" aria-pressed="false" title="Toggle high-contrast mode">◐ <span class="sr-only">High contrast</span></button>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Slide preview" tabindex="-1">
+  <button class="lightbox-close" aria-label="Close slide preview">×</button>
+  <img src="" alt="">
 </div>
 
 <script>
+  // === Slide gallery ===
   const slidesGrid = document.querySelector('.slides-grid');
   const slideTitles = [
     'Title', 'Menti opener', 'What is intelligence?', 'List of contents',
@@ -1660,52 +2256,114 @@
   ];
   for (let i = 1; i <= 25; i++) {
     const num = String(i).padStart(2, '0');
-    const div = document.createElement('div');
-    div.className = 'slide-thumb';
-    div.innerHTML = `
+    const btn = document.createElement('button');
+    btn.className = 'slide-thumb';
+    btn.setAttribute('type', 'button');
+    btn.setAttribute('aria-label', `Open slide ${i}: ${slideTitles[i-1]}`);
+    btn.innerHTML = `
       <img src="assets/workshop/slide-${num}.png" alt="Slide ${i}: ${slideTitles[i-1]}" loading="lazy">
       <div class="num">Slide ${i} · ${slideTitles[i-1]}</div>
     `;
-    div.addEventListener('click', () => openLightbox(`assets/workshop/slide-${num}.png`));
-    slidesGrid.appendChild(div);
+    btn.addEventListener('click', () => openLightbox(`assets/workshop/slide-${num}.png`, `Slide ${i}: ${slideTitles[i-1]}`));
+    slidesGrid.appendChild(btn);
   }
+  // Slide thumbnails are <button>, but they should still look like the divs did:
+  document.querySelectorAll('.slide-thumb').forEach(b => {
+    b.style.textAlign = 'left';
+    b.style.font = 'inherit';
+    b.style.color = 'inherit';
+    b.style.width = '100%';
+    b.style.border = 'none';
+  });
 
+  // === Lightbox ===
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
-  function openLightbox(src) {
+  const lightboxClose = lightbox.querySelector('.lightbox-close');
+  let lastFocused = null;
+
+  function openLightbox(src, altText) {
+    lastFocused = document.activeElement;
     lightboxImg.src = src;
+    lightboxImg.alt = altText || 'Workshop slide enlarged';
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
   }
+
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
   }
-  lightbox.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
+  lightboxClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+  });
+
+  // === Reference tabs ===
   const tabs = document.querySelectorAll('.ref-tab');
   const lists = document.querySelectorAll('.ref-list');
   tabs.forEach(tab => {
+    tab.setAttribute('role', 'tab');
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
-      tabs.forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
       lists.forEach(l => l.classList.remove('active'));
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
       document.querySelector(`.ref-list[data-tab="${target}"]`).classList.add('active');
     });
   });
 
+  // === Reading controls (UDL: multiple means of engagement) ===
+  const textBtn = document.getElementById('text-size-toggle');
+  const contrastBtn = document.getElementById('contrast-toggle');
+
+  // Restore saved preferences
+  if (localStorage.getItem('a11y-large-text') === '1') {
+    document.body.classList.add('large-text');
+    textBtn.classList.add('active');
+    textBtn.setAttribute('aria-pressed', 'true');
+  }
+  if (localStorage.getItem('a11y-contrast') === '1') {
+    document.body.classList.add('high-contrast');
+    contrastBtn.classList.add('active');
+    contrastBtn.setAttribute('aria-pressed', 'true');
+  }
+
+  textBtn.addEventListener('click', () => {
+    const on = document.body.classList.toggle('large-text');
+    textBtn.classList.toggle('active', on);
+    textBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    localStorage.setItem('a11y-large-text', on ? '1' : '0');
+  });
+
+  contrastBtn.addEventListener('click', () => {
+    const on = document.body.classList.toggle('high-contrast');
+    contrastBtn.classList.toggle('active', on);
+    contrastBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    localStorage.setItem('a11y-contrast', on ? '1' : '0');
+  });
+
+  // === Fade-in observer (skipped if prefers-reduced-motion) ===
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fadeIns = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  fadeIns.forEach(el => observer.observe(el));
+  if (prefersReduced) {
+    fadeIns.forEach(el => el.classList.add('visible'));
+  } else {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeIns.forEach(el => observer.observe(el));
+  }
 </script>
 
 </body>
