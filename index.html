@@ -362,22 +362,50 @@
     border-radius: 4px;
     box-shadow: 0 25px 60px -20px rgba(31, 36, 33, 0.35),
                 0 8px 20px -10px rgba(31, 36, 33, 0.2);
-    transform: rotate(1.5deg);
+    transform: rotate(0.75deg);
     transition: transform 0.4s ease;
   }
 
   .home-image:hover img { transform: rotate(0deg); }
 
   .home-image::before {
-    content: 'What a time to be alive.';
+    content: 'Thompson Rivers University';
     position: absolute;
     top: -28px;
     left: -20px;
     font-family: 'Caveat', cursive;
-    font-size: 32px;
+    font-size: 28px;
     color: var(--teal);
-    transform: rotate(-3deg);
+    transform: rotate(-2deg);
     z-index: 2;
+    max-width: 11em;
+    line-height: 1.1;
+  }
+
+  .home-welcome-photo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .home-welcome-photo-row figure {
+    margin: 0;
+  }
+
+  .home-welcome-photo-row img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 14px 40px -18px rgba(31, 36, 33, 0.3);
+    display: block;
+  }
+
+  .home-welcome-photo-row figcaption {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    line-height: 1.4;
   }
 
   .home-welcome {
@@ -965,6 +993,94 @@
     color: var(--ink-soft);
   }
 
+  .workshop-carousel {
+    max-width: 860px;
+    margin: 26px auto 50px;
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 18px 38px -18px rgba(31, 36, 33, 0.28);
+  }
+
+  .workshop-carousel h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  .workshop-carousel-frame {
+    border-radius: 4px;
+    overflow: hidden;
+    background: #0f1311;
+    min-height: 300px;
+  }
+
+  .workshop-slide {
+    display: none;
+    margin: 0;
+  }
+
+  .workshop-slide.active {
+    display: block;
+  }
+
+  .workshop-slide img,
+  .workshop-slide video {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 560px;
+    object-fit: contain;
+    background: #0f1311;
+  }
+
+  .workshop-slide figcaption {
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--paper);
+    padding: 12px 2px 2px;
+  }
+
+  .workshop-carousel-controls {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .workshop-carousel-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .carousel-btn {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .carousel-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .workshop-carousel-count {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
   .mentors-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1000,85 +1116,6 @@
     color: var(--ink-soft);
     font-style: italic;
     line-height: 1.5;
-  }
-
-  .slides-section-title {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: 28px;
-    text-align: center;
-    margin: 30px 0 8px;
-    color: var(--accent);
-  }
-
-  .slides-section-subtitle {
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: 14px;
-    margin-bottom: 36px;
-  }
-
-  .slides-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-    margin-bottom: 30px;
-  }
-
-  .slide-thumb {
-    background: var(--paper);
-    padding: 8px;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px -4px rgba(31, 36, 33, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-
-  .slide-thumb:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -8px rgba(31, 36, 33, 0.25);
-  }
-
-  .slide-thumb img { width: 100%; display: block; border-radius: 2px; }
-
-  .slide-thumb .num {
-    font-size: 10.5px;
-    color: var(--ink-soft);
-    padding: 8px 4px 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-  }
-
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(31, 36, 33, 0.95);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-    padding: 40px;
-    cursor: pointer;
-  }
-
-  .lightbox.active { display: flex; }
-
-  .lightbox img {
-    max-width: 100%;
-    max-height: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 20px; right: 30px;
-    background: none;
-    border: none;
-    color: var(--paper);
-    font-size: 36px;
-    cursor: pointer;
-    font-family: 'Fraunces', serif;
   }
 
   /* REFLECTIONS */
@@ -1373,7 +1410,8 @@
       grid-template-columns: 1fr;
       gap: 36px;
     }
-    .roles-grid, .interests-row, .philosophy-pillars, .reflection-grid, .mentors-grid {
+    .roles-grid, .interests-row, .philosophy-pillars, .reflection-grid, .mentors-grid,
+    .home-welcome-photo-row {
       grid-template-columns: 1fr;
     }
     .nav-inner { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
@@ -1388,6 +1426,12 @@
     .forward-item::before { font-size: 22px; }
     .about-image-wrap { position: static; }
     .home-meta { grid-template-columns: 1fr; }
+    .workshop-carousel {
+      padding: 14px;
+    }
+    .workshop-carousel-frame {
+      min-height: 220px;
+    }
   }
 
   .fade-in {
@@ -1746,7 +1790,7 @@
       </div>
     </div>
     <div class="home-image">
-      <img src="assets/photos/scrapbook.png" alt="A scrapbook of Dora's teaching journey: pandemic classroom, Language Learning Centre, students' iPads and artwork">
+      <img src="assets/photos/dora-tru-sign.png" alt="Dora María González at Thompson Rivers University, with the TRU entrance sign visible behind her on a grassy hill">
     </div>
   </div>
 
@@ -1756,6 +1800,16 @@
       <p><strong>This is my professional learning journey through EDUC 5990.</strong> Rather than a folder of files you could just as easily click through on Moodle, this portfolio gathers the work of an entire course — readings, assignments, collaborative activities, and the quiet shifts that happen between them — into something that hopefully reads like a single, connected story.</p>
       <p>Its purpose is to demonstrate the scope of my learning: how I engaged with the course materials, how the reflections changed me both professionally and personally, and how I am continuing to develop the competencies this course put in front of me — accessibility, leadership, inclusive design, and reflective practice in technology-rich educational spaces.</p>
       <p>It is also a record of how I bridge <em>theory and practice</em> — how the readings, the UDL framework, the ethics of AI, and the literature on the digital divide have actually shown up in my present work as a volunteer tutor at the TRU Language Learning Centre, and how I plan to carry them forward into the work that comes next.</p>
+      <div class="home-welcome-photo-row">
+        <figure>
+          <img src="assets/photos/dora-tru-campus.png" alt="Dora at the Thompson Rivers University Campus Activity Center, smiling on the outdoor steps in front of the building">
+          <figcaption>On campus · TRU Campus Activity Center</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/photos/scrapbook.png" alt="A scrapbook collage of Dora's teaching journey: pandemic classroom, Language Learning Centre, students' iPads and artwork">
+          <figcaption>What a time to be alive · a collage of the teaching threads that brought me here</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -1807,7 +1861,7 @@
         <p>My philosophy of education is <em>relational, community-based, and rooted in scientific research</em> — particularly developmental psychology and the ethics of how we relate to one another in change. Learning happens in relationship, and the work of teaching is the work of attending to that relationship while giving learners the tools to grow into themselves.</p>
         <p>I believe in <em>inclusive education</em> as a non-negotiable starting point — not as an accommodation added afterward, but as the design from the beginning. Every learner I have worked with, from neurodivergent children to multilingual ESL adults, has reminded me that intelligence is not a single thing, and access to expression is not the same as having something to express.</p>
         <p>I believe digital tools, used consciously, can <em>encourage learners further into their education</em> — as scaffolds, as bridges, as opportunities — but never as <em>substitutes</em> for thinking, voice, or human relationship. Conscious use is the whole point.</p>
-        <p>This is why I am especially drawn to Michael Fullan's work on educational leadership and change, which I am engaging with in Assignment 6: any meaningful technology integration is also a change-leadership problem, and change-leadership requires attending to the people the system is meant to serve. <em>(More to come in the Coursework section as Assignment 6 develops.)</em></p>
+        <p>This is why I am especially drawn to Michael Fullan's work on educational leadership and change, which I am engaging with in Assignment 6: any meaningful technology integration is also a change-leadership problem, and change-leadership requires attending to the people the system is meant to serve.</p>
 
         <h3>Personal interests &amp; aspirations</h3>
         <div class="interests-row">
@@ -1921,18 +1975,21 @@
 
     <div class="theme-card fade-in">
       <span class="theme-card-tag">Assignment 2 · Pedagogical innovation</span>
-      <h3>Pandemic pedagogy: a case study in technology as window, technology as wall</h3>
-      <div class="theme-card-meta">Case study · Week 5 · 2026</div>
+      <h3>Conscious AI at the Language Learning Centre: a case study in human-centered innovation</h3>
+      <div class="theme-card-meta">Case study analysis · February 5, 2026</div>
       <div class="theme-card-body">
-        <p>The pandemic-era role I held — supervising children doing school online from home on iPads — was a pedagogical innovation built out of necessity, not design. Some of it worked beautifully: Zoom let me reach children whose parents could not stay home. Some of it failed: kids fell into Roblox, attention fractured, and the divide between supported and unsupported families widened in real time.</p>
-        <p>The goal of education had not changed; the alignment between outcome, activity, and assessment was scrambled by the medium. The innovation, I argue, was not the iPad. It was the <em>posters on the wall, the morning circles, the vocabulary board, the limit on screen time</em> — the human design layered onto the technology.</p>
+        <p>Assignment 2 analyzes the emerging pedagogical innovation I was participating in at the TRU Language Learning Centre: helping multilingual learners use AI <em>consciously</em> — as a scaffold for language practice, not as a replacement for voice, thought, or human interaction.</p>
+        <p>The case study identifies four connected goals: fostering language proficiency through meaningful interaction, building students' critical awareness of AI, promoting learner autonomy, and aligning AI-supported practice with inclusive UDL principles. In the LLC, this meant treating tools such as ChatGPT, Grammarly, NotebookLM, Langua, and ELSA Speak as possible supports for conversation preparation, vocabulary expansion, grammar clarification, pronunciation practice, and formative feedback.</p>
+        <p>The central argument is that technology becomes pedagogically meaningful only when it is intentionally designed into the learning relationship. AI can offer immediacy, personalization, and access beyond scheduled tutoring hours, but it also brings risks: over-reliance, academic integrity concerns, hallucinations, bias, and the possible loss of authentic student voice. The educator's role is therefore not reduced by AI; it becomes more important.</p>
+        <div class="theme-card-callout">AI can enhance language learning when it supports the learner's own thinking, confidence, and communication — but it should never replace authentic human interaction.</div>
       </div>
       <div class="theme-card-readings">
         <div class="label">Readings woven in</div>
         <ul>
-          <li><strong>An et al. (2021)</strong> — K-12 teachers' feelings, experiences, and perspectives during early pandemic online teaching</li>
-          <li><strong>Prado-Gascó et al. (2020)</strong> — Stay at Home and Teach: Psychosocial Risks Between Spain and Mexico</li>
-          <li><strong>Jiménez Ramírez et al. (2024)</strong> — Estrategias de acompañamiento familiar en la educación preescolar (México)</li>
+          <li><strong>Creely (2024)</strong> — generative AI opportunities and challenges in language learning</li>
+          <li><strong>Barbosa Jiménez &amp; Saborio Barrantes (2024)</strong> — the relevance of UDL for English language beginners</li>
+          <li><strong>Özer (2024)</strong> — benefits and risks of AI in education</li>
+          <li><strong>Zaman (2023)</strong> — AI benefits, risks, and ethical considerations in education</li>
         </ul>
       </div>
     </div>
@@ -1974,17 +2031,20 @@
 
     <div class="theme-card fade-in">
       <span class="theme-card-tag">Assignment 6 · Leadership &amp; change</span>
-      <h3>Leading through change: Fullan, technology integration, and the AI workshop as case study</h3>
-      <div class="theme-card-meta">Team presentation · Week 13 · in development</div>
+      <h3>AI innovation in the TRU Language Learning Centre: leading technology integration through change</h3>
+      <div class="theme-card-meta">Team presentation · Group 4 · Spring 2026</div>
       <div class="theme-card-body">
-        <p>Assignment 6 asks us to model leadership best practices in the management of change for a technology integration in a real educational context. I am drawing on <strong>Michael Fullan's</strong> work on educational leadership and change to frame the AI workshop I delivered at the TRU Language Learning Centre — not as a one-off event, but as a small, situated case of change-leadership in action.</p>
-        <p>Fullan's framing helps me read what actually happened: the institutional moves required to interview TRU faculty before designing the workshop, the iterative work of building students' capacity to engage critically with AI, and the coherence between course theory, student experience, and institutional position that the workshop tried to hold together. <em>(This card will expand as the assignment develops; the workshop itself is documented in detail in the Workshop section below.)</em></p>
+        <p>Assignment 6 turns the LLC workshop into a change-leadership case. Our team asks why AI innovation is desirable in the Language Learning Centre: it can personalize feedback, increase access outside tutoring hours, support multilingual learners through multimodal tools, and help tutors identify common learning needs. But the presentation also names the human difficulty of adoption: staff uncertainty, fear of replacement, lack of confidence with AI tools, academic integrity questions, digital equity, and the risk of students becoming over-reliant on automated answers.</p>
+        <p>To make the change manageable, we frame AI integration through <strong>Fullan's view of educational change</strong> as complex, emotional, and non-linear; <strong>Rogers' diffusion of innovations</strong> to understand adoption and resistance; <strong>Kotter's 8-step model</strong> to build urgency, coalition, vision, communication, training, and short-term wins; and the <strong>SAMR model</strong> to move beyond simple substitution toward transformed language-learning practices.</p>
+        <p>The leadership conclusion is the same one that shaped the workshop: AI should not replace tutors or human teaching. It should enhance connection, feedback, confidence, and access — with clear guidelines, professional development, student feedback loops, and a designated AI champion to sustain the change over time.</p>
       </div>
       <div class="theme-card-readings">
         <div class="label">Readings woven in</div>
         <ul>
-          <li><strong>Michael Fullan</strong> — on educational leadership and change <em>(specific text to be cited as the assignment finalizes)</em></li>
-          <li>Course readings on management of change, resistance, and effectiveness of professional development (EDUC 5990, Unit 9)</li>
+          <li><strong>Fullan</strong> — educational leadership, coherence, and the changing nature of leadership</li>
+          <li><strong>Rogers / Sahin</strong> — diffusion of innovations and educational technology adoption</li>
+          <li><strong>Kotter</strong> — leading change and why transformation efforts fail</li>
+          <li><strong>Puentedura</strong> — SAMR as a way to evaluate depth of technology integration</li>
         </ul>
       </div>
     </div>
@@ -2030,7 +2090,7 @@
         <div class="mentor-card">
           <div class="name">Brian Lamb</div>
           <div class="role">Director, Innovation in Open Learning</div>
-          <div class="quote">"Anyone who tells you they're an AI expert is full of crap. We're all figuring this out together."</div>
+          <div class="quote">"Anyone who tells you they're an AI expert isn't being straight with you. We're all figuring this out together."</div>
         </div>
         <div class="mentor-card">
           <div class="name">Alexis Brown</div>
@@ -2052,6 +2112,11 @@
         <span class="source">— from the workshop, Slide 9</span>
       </blockquote>
 
+      <h3>How Assignment 6 deepened the workshop</h3>
+      <p>The Assignment 6 presentation gave the workshop a stronger leadership frame. Instead of presenting AI as a shiny new tool, it positioned AI integration at the LLC as a careful change process: start with learner needs, acknowledge staff uncertainty, build trust through training, and keep human tutors central to the model.</p>
+      <p>Our group proposed ChatGPT as a flexible first AI tool for the LLC because it can support grammar correction, vocabulary expansion, conversational practice, and explanations of complex language rules. But we also argued that successful integration depends on clear boundaries: protecting academic integrity, avoiding over-reliance, ensuring fair access, and creating regular feedback loops with both tutors and students.</p>
+      <blockquote>Technology was not the center of the change. Trust, communication, professional identity, and student support were.</blockquote>
+
       <h3>The activity that landed hardest</h3>
       <p>I asked students to create their own AI persona for language practice — a conversational tutor for the Conversation Circles I run at the LLC. We built prompts together: "Act as a friendly conversation partner. Help me practice English. Ask me questions and correct me gently." Then we improved them. This activity took everything I had been reading about — Yang's learner personas, Fiori's UDL-anchored AI design, Hockly's caution about chatbots — and put it in students' hands.</p>
 
@@ -2060,9 +2125,53 @@
       <p>For a workshop on AI delivered to a diverse multilingual audience, that single moment did more than any of my slides. It was the variability of learners that the UDL literature keeps insisting matters — made visible in the room, in real time. I didn't plan it. I just left enough room for it.</p>
     </div>
 
-    <h3 class="slides-section-title">All 25 slides</h3>
-    <p class="slides-section-subtitle">Click any slide to enlarge</p>
-    <div class="slides-grid"></div>
+    <div class="workshop-carousel" aria-label="Workshop WhatsApp media carousel">
+      <h3>Workshop moments</h3>
+      <div class="workshop-carousel-frame">
+        <figure class="workshop-slide active">
+          <img src="assets/workshop/whatsapp-01.jpeg" alt="Workshop photo shared on WhatsApp from the Language Learning Centre session">
+          <figcaption>WhatsApp photo from the workshop day.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <img src="assets/workshop/whatsapp-02.jpeg" alt="Workshop photo shared on WhatsApp showing students during the session">
+          <figcaption>Students and activities during the workshop.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <img src="assets/workshop/whatsapp-03.jpeg" alt="Workshop photo shared on WhatsApp from another angle of the classroom">
+          <figcaption>Another classroom moment from the same session.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <img src="assets/workshop/whatsapp-04.jpeg" alt="Workshop photo shared on WhatsApp featuring participants in discussion">
+          <figcaption>Participant discussion and group interaction.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <img src="assets/workshop/whatsapp-05.jpeg" alt="Workshop photo shared on WhatsApp showing learning materials and participants">
+          <figcaption>Learning materials and participant engagement.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <img src="assets/workshop/whatsapp-06.jpeg" alt="Workshop photo shared on WhatsApp with a wider view of the Language Learning Centre space">
+          <figcaption>A wider view of the workshop environment.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <img src="assets/workshop/whatsapp-07.jpeg" alt="Workshop photo shared on WhatsApp showing a final moment from the AI session">
+          <figcaption>Closing moments from the AI workshop.</figcaption>
+        </figure>
+        <figure class="workshop-slide">
+          <video controls preload="metadata" playsinline>
+            <source src="assets/workshop/whatsapp-08.mp4" type="video/mp4">
+          </video>
+          <figcaption>WhatsApp video from the workshop day.</figcaption>
+        </figure>
+      </div>
+      <div class="workshop-carousel-controls">
+        <div class="workshop-carousel-nav">
+          <button class="carousel-btn carousel-prev" type="button" aria-label="Previous workshop media">‹</button>
+          <button class="carousel-btn carousel-next" type="button" aria-label="Next workshop media">›</button>
+        </div>
+        <div class="workshop-carousel-count" aria-live="polite">1 / 8</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2115,6 +2224,12 @@
       </div>
       <div class="forward-item">
         <div>
+          <h4>From pilot to a series at the LLC</h4>
+          <p>With my supervisor John Turner, we framed that first AI workshop as a <strong>pilot</strong> — intentional permission to sketch a wide map before going deep. At the Language Learning Centre we mean to turn it into the <strong>first of a series</strong>: over the summer and in future semesters we plan to revisit each topic we only touched briefly, offer workshops focused specifically on AI tools for language learning, and run stand-alone sessions that walk learners through activities we sampled once together — especially <strong>building an AI persona for conversational English practice</strong>.</p>
+        </div>
+      </div>
+      <div class="forward-item">
+        <div>
           <h4>Centre voice, especially when it is hard to hear</h4>
           <p>From Freire, from Project of Heart, from David in my workshop, from my own evenings in Mumbai: the most important pedagogical move is leaving room for the learner whose access to expression is restricted, and trusting that what they have to say is worth waiting for.</p>
         </div>
@@ -2158,6 +2273,7 @@
     </div>
 
     <ul class="ref-list active" data-tab="udl">
+      <li>Barbosa Jiménez, K., &amp; Saborio Barrantes, K. (2024). The relevance of UDL in English language beginners. <em>REVISTAINCAING, 7</em>(45), 96–102. https://www.ojsincaing.com.mx/index.php/ediciones/article/view/387</li>
       <li>Fiori, M. (n.d.). <em>Social constructivism, UDL, and instructional design in the AI-enhanced Spanish L2 classroom.</em></li>
       <li>Rao, K., &amp; Torres, C. (2017). Supporting academic and affective learning processes for English language learners with Universal Design for Learning. <em>TESOL Quarterly, 51</em>(3), 460–472.</li>
       <li>Strangman, N., Meyer, A., Hall, T., &amp; Proctor, P. (2005). Improving foreign language instruction with new technologies and Universal Design for Learning. <em>IALLT Journal of Language Learning Technologies, 37</em>(2).</li>
@@ -2166,12 +2282,16 @@
 
     <ul class="ref-list" data-tab="ai">
       <li>Ashok, M., Madan, R., Joha, A., &amp; Sivarajah, U. (2022). Ethical framework for Artificial Intelligence and Digital technologies. <em>International Journal of Information Management, 62</em>, 102433. https://doi.org/10.1016/j.ijinfomgt.2021.102433</li>
+      <li>Creely, E. (2024). Exploring the role of generative AI in enhancing language learning: Opportunities and challenges. <em>International Journal of Changes in Education, 1</em>(3), 158–167. https://doi.org/10.47852/bonviewijce42022495</li>
       <li>Eden, C. A., Chisom, O. N., &amp; Adeniyi, I. S. (2024). Integrating AI in education: Opportunities, challenges, and ethical considerations. <em>Magna Scientia Advanced Research and Reviews, 10</em>, 6–13.</li>
-      <li>Gignac, G. E., &amp; Szodorai, E. T. (2024). Defining intelligence: Bridging the gap between human and artificial perspectives. <em>Intelligence, 104</em>, 101832.</li>
+      <li>Floridi, L., et al. (2018). AI4People—An ethical framework for a good AI society: Opportunities, risks, principles, and recommendations. <em>Minds and Machines, 28</em>(4), 689–707. https://doi.org/10.1007/s11023-018-9482-5</li>
+      <li>Gignac, G. E., &amp; Szodorai, E. T. (2024). Defining intelligence: Bridging the gap between human and artificial perspectives. <em>Intelligence, 104</em>, 101832. https://doi.org/10.1016/j.intell.2024.101832</li>
       <li>Hockly, N. (2023). Artificial intelligence in English language teaching: The good, the bad and the ugly. <em>RELC Journal, 54</em>(2), 445–451.</li>
       <li>Microsoft. (n.d.). How does generative AI work? Retrieved from https://www.microsoft.com/en-us/ai/ai-101/how-does-generative-ai-work</li>
+      <li>Özer, M. (2024). Potential benefits and risks of artificial intelligence in education. <em>Bartın Üniversitesi Eğitim Fakültesi Dergisi, 13</em>(2), 232–244. https://doi.org/10.14686/buefad.1416087</li>
       <li>Thompson Rivers University. (n.d.). Student AI. https://studentai.trubox.ca/</li>
       <li>Thompson Rivers University Library. (n.d.). Artificial intelligence libguide. https://libguides.tru.ca/artificialintelligence/home</li>
+      <li>Zaman, B. U. (2023). Transforming education through AI, benefits, risks, and ethical considerations. https://doi.org/10.36227/techrxiv.24231583.v1</li>
     </ul>
 
     <ul class="ref-list" data-tab="pandemic">
@@ -2189,13 +2309,23 @@
     </ul>
 
     <ul class="ref-list" data-tab="leadership">
-      <li>Fullan, M. <em>(In progress — to be cited fully as Assignment 6 finalizes.)</em></li>
-      <li>Course readings on management of change, resistance to change, leadership styles, and effectiveness of professional development (EDUC 5990, Unit 9).</li>
+      <li>Brown, A. (2026). Personal communication, interview on AI use and academic integrity at TRU.</li>
+      <li>Fovet, F. (2026). Personal communication, interview on AI integration and educational technology at TRU.</li>
+      <li>Fullan, M. (2020). The nature of leadership is changing. <em>European Journal of Education, 55</em>(2), 139–142. https://doi.org/10.1111/ejed.12388</li>
+      <li>Fullan, M., Azorín, C., Harris, A., &amp; Jones, M. (2024). Artificial intelligence and school leadership: Challenges, opportunities and implications. <em>School Leadership &amp; Management, 44</em>(4), 339–346. https://doi.org/10.1080/13632434.2023.2246856</li>
+      <li>Guskey, T. R., &amp; Yoon, K. S. (2009). What works in professional development? <em>Phi Delta Kappan, 90</em>(7), 495–500.</li>
+      <li>Kotter, J. P. (2007). Leading change: Why transformation efforts fail. <em>Harvard Business Review.</em></li>
+      <li>Lamb, B. (2026). Personal communication, interview on AI expertise and institutional use at TRU.</li>
+      <li>Patnaik, P., &amp; Bakkar, M. (2024). Exploring determinants influencing artificial intelligence adoption: Reference to diffusion of innovation theory. <em>Technology in Society, 79</em>, 102750. https://doi.org/10.1016/j.techsoc.2024.102750</li>
+      <li>Piao, P. (2026). Personal communication, interview on AI use in language learning and student support at TRU.</li>
+      <li>Puentedura, R. (2020). <em>Thinking about SAMR: Two-pass ladders</em> [PDF]. Hippasus.</li>
+      <li>Sahin, I. (2006). Detailed review of Rogers' diffusion of innovations theory and educational technology-related studies based on Rogers' theory. <em>The Turkish Online Journal of Educational Technology, 5</em>(2), 14–23.</li>
+      <li>Thiers, N. (2017). Making progress possible: A conversation with Michael Fullan. <em>Educational Leadership, 74</em>(9), 8–14.</li>
     </ul>
 
     <ul class="ref-list" data-tab="philosophy">
-      <li>Freire, P. (2021). <em>Pedagogy of hope: Reliving pedagogy of the oppressed</em> (Reprint ed.). Bloomsbury Academic.</li>
       <li>Freire, P. (1970). <em>Pedagogy of the oppressed.</em> Continuum.</li>
+      <li>Freire, P. (2021). <em>Pedagogy of hope: Reliving pedagogy of the oppressed</em> (Reprint ed.). Bloomsbury Academic.</li>
     </ul>
   </div>
 </section>
@@ -2215,7 +2345,7 @@
     <div class="license-text">
       <h3 id="license-heading">Licensing &amp; accessibility</h3>
       <p>This e-portfolio by <strong>Dora María González</strong> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)</a>. You are free to share and adapt this work, provided you attribute me, do not use it for commercial purposes, and share any derivative work under the same license.</p>
-      <p>This site has been designed with the principles of <strong>Universal Design for Learning</strong> in mind. It offers multiple means of representation (descriptive alt text on every image, sufficient color contrast, scalable typography), action and expression (a skip-to-content link, full keyboard navigation, visible focus indicators, the lightbox is fully keyboard-operable), and engagement (text-size and high-contrast controls in the lower-left corner, and respect for the <em>prefers-reduced-motion</em> system setting). If anything on this page is hard to access, please let me know — accessibility is not a finished state, it is a practice.</p>
+      <p>This site has been designed with the principles of <strong>Universal Design for Learning</strong> in mind. It offers multiple means of representation (descriptive alt text on every image, sufficient color contrast, scalable typography), action and expression (a skip-to-content link, full keyboard navigation, visible focus indicators), and engagement (text-size and high-contrast controls in the lower-left corner, and respect for the <em>prefers-reduced-motion</em> system setting). If anything on this page is hard to access, please let me know — accessibility is not a finished state, it is a practice.</p>
     </div>
   </div>
 </section>
@@ -2238,70 +2368,39 @@
   <button id="contrast-toggle" aria-pressed="false" title="Toggle high-contrast mode">◐ <span class="sr-only">High contrast</span></button>
 </div>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Slide preview" tabindex="-1">
-  <button class="lightbox-close" aria-label="Close slide preview">×</button>
-  <img src="" alt="">
-</div>
-
 <script>
-  // === Slide gallery ===
-  const slidesGrid = document.querySelector('.slides-grid');
-  const slideTitles = [
-    'Title', 'Menti opener', 'What is intelligence?', 'List of contents',
-    'Defining intelligence (Gignac)', 'Conscious AI: the questions', 'Five principles', 'Ethical use',
-    'Responsible use', 'Academic integrity', 'Data protection', 'Spot the AI vs human (Freire)',
-    'Debrief', 'How AI works', 'Challenges & limitations', 'Activity: prompt → improve → reflect',
-    'Better prompting', 'Your voice is your value', 'Good vs risky use', 'Activity: create an AI persona',
-    'TRU resources', 'Questions / thoughts', 'References (1)', 'References (2)', 'Thank you'
-  ];
-  for (let i = 1; i <= 25; i++) {
-    const num = String(i).padStart(2, '0');
-    const btn = document.createElement('button');
-    btn.className = 'slide-thumb';
-    btn.setAttribute('type', 'button');
-    btn.setAttribute('aria-label', `Open slide ${i}: ${slideTitles[i-1]}`);
-    btn.innerHTML = `
-      <img src="assets/workshop/slide-${num}.png" alt="Slide ${i}: ${slideTitles[i-1]}" loading="lazy">
-      <div class="num">Slide ${i} · ${slideTitles[i-1]}</div>
-    `;
-    btn.addEventListener('click', () => openLightbox(`assets/workshop/slide-${num}.png`, `Slide ${i}: ${slideTitles[i-1]}`));
-    slidesGrid.appendChild(btn);
+  // === Workshop carousel (images + video) ===
+  const workshopCarousel = document.querySelector('.workshop-carousel');
+  if (workshopCarousel) {
+    const workshopSlides = workshopCarousel.querySelectorAll('.workshop-slide');
+    const prevBtn = workshopCarousel.querySelector('.carousel-prev');
+    const nextBtn = workshopCarousel.querySelector('.carousel-next');
+    const countEl = workshopCarousel.querySelector('.workshop-carousel-count');
+    let workshopIndex = 0;
+
+    function showWorkshopSlide(nextIndex) {
+      workshopSlides.forEach((slide, i) => {
+        const isActive = i === nextIndex;
+        slide.classList.toggle('active', isActive);
+        if (!isActive) {
+          const video = slide.querySelector('video');
+          if (video) video.pause();
+        }
+      });
+      workshopIndex = nextIndex;
+      countEl.textContent = `${workshopIndex + 1} / ${workshopSlides.length}`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      const nextIndex = (workshopIndex - 1 + workshopSlides.length) % workshopSlides.length;
+      showWorkshopSlide(nextIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const nextIndex = (workshopIndex + 1) % workshopSlides.length;
+      showWorkshopSlide(nextIndex);
+    });
   }
-  // Slide thumbnails are <button>, but they should still look like the divs did:
-  document.querySelectorAll('.slide-thumb').forEach(b => {
-    b.style.textAlign = 'left';
-    b.style.font = 'inherit';
-    b.style.color = 'inherit';
-    b.style.width = '100%';
-    b.style.border = 'none';
-  });
-
-  // === Lightbox ===
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-  const lightboxClose = lightbox.querySelector('.lightbox-close');
-  let lastFocused = null;
-
-  function openLightbox(src, altText) {
-    lastFocused = document.activeElement;
-    lightboxImg.src = src;
-    lightboxImg.alt = altText || 'Workshop slide enlarged';
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    lightboxClose.focus();
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-    if (lastFocused) lastFocused.focus();
-  }
-
-  lightboxClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
-  });
 
   // === Reference tabs ===
   const tabs = document.querySelectorAll('.ref-tab');
